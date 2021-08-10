@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="844b2cde92c54a98b43e134234a2aa84" Name="Diagram1">
+        <EntityTypeShape EntityType="RubberDuckRentModel.Companies" Width="1.5" PointX="0.75" PointY="1.375" />
+        <EntityTypeShape EntityType="RubberDuckRentModel.Ducks" Width="1.5" PointX="3" PointY="1.25" />
+        <EntityTypeShape EntityType="RubberDuckRentModel.Rented" Width="1.5" PointX="5.25" PointY="1" />
+        <EntityTypeShape EntityType="RubberDuckRentModel.Renter" Width="1.5" PointX="3" PointY="5.25" />
+        <AssociationConnector Association="RubberDuckRentModel.FK__Ducks__manufactu__2D27B809" />
+        <AssociationConnector Association="RubberDuckRentModel.FK__Rented__rented_f__33D4B598" />
+        <AssociationConnector Association="RubberDuckRentModel.FK__Rented__duck__34C8D9D1" />
+        <AssociationConnector Association="RubberDuckRentModel.FK__Rented__renter__32E0915F" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

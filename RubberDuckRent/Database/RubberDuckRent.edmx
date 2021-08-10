@@ -1,0 +1,307 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="RubberDuckRentModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Companies">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="50" />
+          <Property Name="stock_of_ducks" Type="int" />
+        </EntityType>
+        <EntityType Name="Ducks">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="type" Type="varchar" MaxLength="50" />
+          <Property Name="color" Type="varchar" MaxLength="30" />
+          <Property Name="manufactured_by" Type="int" />
+        </EntityType>
+        <EntityType Name="Rented">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="rented_time" Type="date" />
+          <Property Name="timest" Type="date" />
+          <Property Name="renter" Type="int" />
+          <Property Name="rented_from" Type="int" />
+          <Property Name="duck" Type="int" />
+        </EntityType>
+        <EntityType Name="Renter">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="50" />
+          <Property Name="email" Type="varchar" MaxLength="30" />
+          <Property Name="age" Type="int" />
+          <Property Name="mobile" Type="varchar" MaxLength="30" />
+        </EntityType>
+        <Association Name="FK__Ducks__manufactu__2D27B809">
+          <End Role="Companies" Type="Self.Companies" Multiplicity="0..1" />
+          <End Role="Ducks" Type="Self.Ducks" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Companies">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Ducks">
+              <PropertyRef Name="manufactured_by" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Rented__duck__34C8D9D1">
+          <End Role="Ducks" Type="Self.Ducks" Multiplicity="0..1" />
+          <End Role="Rented" Type="Self.Rented" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ducks">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Rented">
+              <PropertyRef Name="duck" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Rented__rented_f__33D4B598">
+          <End Role="Companies" Type="Self.Companies" Multiplicity="0..1" />
+          <End Role="Rented" Type="Self.Rented" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Companies">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Rented">
+              <PropertyRef Name="rented_from" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Rented__renter__32E0915F">
+          <End Role="Renter" Type="Self.Renter" Multiplicity="0..1" />
+          <End Role="Rented" Type="Self.Rented" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Renter">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Rented">
+              <PropertyRef Name="renter" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="RubberDuckRentModelStoreContainer">
+          <EntitySet Name="Companies" EntityType="Self.Companies" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Ducks" EntityType="Self.Ducks" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Rented" EntityType="Self.Rented" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Renter" EntityType="Self.Renter" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Ducks__manufactu__2D27B809" Association="Self.FK__Ducks__manufactu__2D27B809">
+            <End Role="Companies" EntitySet="Companies" />
+            <End Role="Ducks" EntitySet="Ducks" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Rented__duck__34C8D9D1" Association="Self.FK__Rented__duck__34C8D9D1">
+            <End Role="Ducks" EntitySet="Ducks" />
+            <End Role="Rented" EntitySet="Rented" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Rented__rented_f__33D4B598" Association="Self.FK__Rented__rented_f__33D4B598">
+            <End Role="Companies" EntitySet="Companies" />
+            <End Role="Rented" EntitySet="Rented" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Rented__renter__32E0915F" Association="Self.FK__Rented__renter__32E0915F">
+            <End Role="Renter" EntitySet="Renter" />
+            <End Role="Rented" EntitySet="Rented" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="RubberDuckRentModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="RubberDuckRentEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Companies" EntityType="RubberDuckRentModel.Companies" />
+          <EntitySet Name="Ducks" EntityType="RubberDuckRentModel.Ducks" />
+          <EntitySet Name="Rented" EntityType="RubberDuckRentModel.Rented" />
+          <EntitySet Name="Renter" EntityType="RubberDuckRentModel.Renter" />
+          <AssociationSet Name="FK__Ducks__manufactu__2D27B809" Association="RubberDuckRentModel.FK__Ducks__manufactu__2D27B809">
+            <End Role="Companies" EntitySet="Companies" />
+            <End Role="Ducks" EntitySet="Ducks" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Rented__rented_f__33D4B598" Association="RubberDuckRentModel.FK__Rented__rented_f__33D4B598">
+            <End Role="Companies" EntitySet="Companies" />
+            <End Role="Rented" EntitySet="Rented" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Rented__duck__34C8D9D1" Association="RubberDuckRentModel.FK__Rented__duck__34C8D9D1">
+            <End Role="Ducks" EntitySet="Ducks" />
+            <End Role="Rented" EntitySet="Rented" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Rented__renter__32E0915F" Association="RubberDuckRentModel.FK__Rented__renter__32E0915F">
+            <End Role="Renter" EntitySet="Renter" />
+            <End Role="Rented" EntitySet="Rented" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Companies">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="stock_of_ducks" Type="Int32" />
+          <NavigationProperty Name="Ducks" Relationship="RubberDuckRentModel.FK__Ducks__manufactu__2D27B809" FromRole="Companies" ToRole="Ducks" />
+          <NavigationProperty Name="Rented" Relationship="RubberDuckRentModel.FK__Rented__rented_f__33D4B598" FromRole="Companies" ToRole="Rented" />
+        </EntityType>
+        <EntityType Name="Ducks">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="type" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="color" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="manufactured_by" Type="Int32" />
+          <NavigationProperty Name="Companies" Relationship="RubberDuckRentModel.FK__Ducks__manufactu__2D27B809" FromRole="Ducks" ToRole="Companies" />
+          <NavigationProperty Name="Rented" Relationship="RubberDuckRentModel.FK__Rented__duck__34C8D9D1" FromRole="Ducks" ToRole="Rented" />
+        </EntityType>
+        <EntityType Name="Rented">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="rented_time" Type="DateTime" Precision="0" />
+          <Property Name="timest" Type="DateTime" Precision="0" />
+          <Property Name="renter" Type="Int32" />
+          <Property Name="rented_from" Type="Int32" />
+          <Property Name="duck" Type="Int32" />
+          <NavigationProperty Name="Companies" Relationship="RubberDuckRentModel.FK__Rented__rented_f__33D4B598" FromRole="Rented" ToRole="Companies" />
+          <NavigationProperty Name="Ducks" Relationship="RubberDuckRentModel.FK__Rented__duck__34C8D9D1" FromRole="Rented" ToRole="Ducks" />
+          <NavigationProperty Name="Renter1" Relationship="RubberDuckRentModel.FK__Rented__renter__32E0915F" FromRole="Rented" ToRole="Renter" />
+        </EntityType>
+        <EntityType Name="Renter">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="email" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="age" Type="Int32" />
+          <Property Name="mobile" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Rented" Relationship="RubberDuckRentModel.FK__Rented__renter__32E0915F" FromRole="Renter" ToRole="Rented" />
+        </EntityType>
+        <Association Name="FK__Ducks__manufactu__2D27B809">
+          <End Type="RubberDuckRentModel.Companies" Role="Companies" Multiplicity="0..1" />
+          <End Type="RubberDuckRentModel.Ducks" Role="Ducks" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Companies">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Ducks">
+              <PropertyRef Name="manufactured_by" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Rented__rented_f__33D4B598">
+          <End Type="RubberDuckRentModel.Companies" Role="Companies" Multiplicity="0..1" />
+          <End Type="RubberDuckRentModel.Rented" Role="Rented" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Companies">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Rented">
+              <PropertyRef Name="rented_from" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Rented__duck__34C8D9D1">
+          <End Type="RubberDuckRentModel.Ducks" Role="Ducks" Multiplicity="0..1" />
+          <End Type="RubberDuckRentModel.Rented" Role="Rented" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ducks">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Rented">
+              <PropertyRef Name="duck" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Rented__renter__32E0915F">
+          <End Type="RubberDuckRentModel.Renter" Role="Renter" Multiplicity="0..1" />
+          <End Type="RubberDuckRentModel.Rented" Role="Rented" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Renter">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Rented">
+              <PropertyRef Name="renter" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="RubberDuckRentModelStoreContainer" CdmEntityContainer="RubberDuckRentEntities">
+          <EntitySetMapping Name="Companies">
+            <EntityTypeMapping TypeName="RubberDuckRentModel.Companies">
+              <MappingFragment StoreEntitySet="Companies">
+                <ScalarProperty Name="stock_of_ducks" ColumnName="stock_of_ducks" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Ducks">
+            <EntityTypeMapping TypeName="RubberDuckRentModel.Ducks">
+              <MappingFragment StoreEntitySet="Ducks">
+                <ScalarProperty Name="manufactured_by" ColumnName="manufactured_by" />
+                <ScalarProperty Name="color" ColumnName="color" />
+                <ScalarProperty Name="type" ColumnName="type" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Rented">
+            <EntityTypeMapping TypeName="RubberDuckRentModel.Rented">
+              <MappingFragment StoreEntitySet="Rented">
+                <ScalarProperty Name="duck" ColumnName="duck" />
+                <ScalarProperty Name="rented_from" ColumnName="rented_from" />
+                <ScalarProperty Name="renter" ColumnName="renter" />
+                <ScalarProperty Name="timest" ColumnName="timest" />
+                <ScalarProperty Name="rented_time" ColumnName="rented_time" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Renter">
+            <EntityTypeMapping TypeName="RubberDuckRentModel.Renter">
+              <MappingFragment StoreEntitySet="Renter">
+                <ScalarProperty Name="mobile" ColumnName="mobile" />
+                <ScalarProperty Name="age" ColumnName="age" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
