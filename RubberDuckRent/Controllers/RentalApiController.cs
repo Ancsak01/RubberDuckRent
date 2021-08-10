@@ -12,8 +12,8 @@ namespace RubberDuckRent.Controllers
     {
         // GET api/<controller>
         [HttpPost]
-        [Route("api/rental/addCompanies")]
-        public IHttpActionResult addCompanies(Company model)
+        [Route("api/rental/rent")]
+        public IHttpActionResult rent(Company model)
         {
             using (Database.RubberDuckRentEntities entity = new Database.RubberDuckRentEntities())
             {
